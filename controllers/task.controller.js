@@ -1,14 +1,12 @@
-export const addTask = async () => {
-    process.stdout.write('What\'s the plan for today? \n');
+import { userTask } from "../models/task.model.js";
 
-    let promise = new Promise((resolve) => {process.stdin.on('data', (data) => {
-        userTask.activeTask.push(data.toString().trim())
-        resolve(userTask)
-        });
-    });
+export const addTask = async (newTask) => {
+    let promise = new Promise((resolve, rejects) => {
+        resolve(userTask.activeTask.push(newTask))
+    })
 
     await promise
-    console.log('Added new task! \n active task:', userTask.activeTask, '\n on-progress task: ')
+    console.log('Added new task! \nactive task:', userTask.activeTask)
 }
 
 export const changeStatus = () => {
