@@ -1,3 +1,4 @@
+import main from "../app.js";
 import { userTask } from "../models/task.model.js";
 
 export const addTask = async (newTask) => {
@@ -6,7 +7,11 @@ export const addTask = async (newTask) => {
     })
 
     await promise
-    console.log('Added new task! \nactive task:', userTask.activeTask)
+
+    console.log('\nAdded new task! \nactive task:', userTask.activeTask, '\n')
+    setTimeout(() => {
+        main()
+    }, 1000);
 }
 
 export const changeStatus = () => {

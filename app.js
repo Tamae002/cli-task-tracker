@@ -3,15 +3,17 @@
  *  2. create main function to handle all the method.
  *  3. handle user input to show spesific data.
  */
+
 import { addTask } from "./controllers/task.controller.js";
 import textResources from "./database/chat.database.js";
 
-async function main(){
-    // First interface when user start the program
-    process.stdout.write(textResources.welcomeText);
-    process.stdout.write(textResources.methodText + '\n\t');
+process.stdout.write(textResources.welcomeText);
 
+async function main(){
     let userInputText;
+
+    // First interface when user start the program
+    process.stdout.write(textResources.methodText + textResources.confirmText);
 
     // User input that will direct to different function
     const userInput = new Promise((resolve, rejects) => {
@@ -25,15 +27,22 @@ async function main(){
 
     let userCommand = userInputText.split(" ")
     let Task = userCommand.slice(1).join(" ")
-    console.log(userCommand)
-    switch (userCommand[0]) {
+
+    switch (userCommand[0].toLowerCase()) {
         case 'add':
             addTask(Task)
             break;
 
+        case 'change':
+            break
+        
+        case 'delete':
+
         default:
-            process.exit()
+            main()
             break;
     }
 }
 main();
+
+export default main
