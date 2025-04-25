@@ -4,8 +4,9 @@
  *  3. handle user input to show spesific data.
  */
 
-import { addTask } from "./controllers/task.controller.js";
+import { addTask, arrayToList } from "./controllers/task.controller.js";
 import textResources from "./database/chat.database.js";
+import { userTask } from "./models/task.model.js";
 
 process.stdout.write(textResources.welcomeText);
 
@@ -18,31 +19,34 @@ async function main(){
     // User input that will direct to different function
     const userInput = new Promise((resolve, rejects) => {
         process.stdin.on('data', (data) => {
-            userInputText = data.toString().trim()
-            resolve(userInputText)
+            userInputText = data.toString().trim();
+            resolve(userInputText);
         });
     });
 
     await userInput
-
-    let userCommand = userInputText.split(" ")
-    let Task = userCommand.slice(1).join(" ")
+    
+    let userCommand = userInputText.split(" ");
+    let Task = userCommand.slice(1).join(" ");
 
     switch (userCommand[0].toLowerCase()) {
         case 'add':
-            addTask(Task)
+            await addTask(Task);
+            arrayToList(userTask.activeTask);
             break;
 
         case 'change':
-            break
+            break;
         
         case 'delete':
-
+            break;
+            
         default:
-            main()
+            main();
             break;
     }
 }
 main();
 
-export default main
+
+export default main;

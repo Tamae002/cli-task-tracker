@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import main from "../app.js";
 import { userTask } from "../models/task.model.js";
 
@@ -8,7 +9,7 @@ export const addTask = async (newTask) => {
 
     await promise
 
-    console.log('\nAdded new task! \nactive task:', userTask.activeTask, '\n')
+    console.log('\nAdded new task! \nnew task:', newTask, '\n')
     setTimeout(() => {
         main()
     }, 1000);
@@ -20,4 +21,12 @@ export const changeStatus = () => {
 
 export const deleteTask = () => {
     // todo
+}
+
+export const arrayToList = (arr) => {
+    let taskList = "";
+    for(let i = 0; i <= arr.length - 1; i++ ) {
+        taskList += `${i + 1}. ` + arr[i] + "\n"
+    }
+    return console.log("Your current task:", chalk.green(taskList))
 }

@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "chalk": "^5.4.1",
     "mysql": "^2.18.1",
     "node": "^23.11.0"
   }
