@@ -4,7 +4,7 @@
  *  3. handle user input to show spesific data.
  */
 
-import { addTask, arrayToList } from "./controllers/task.controller.js";
+import { addTask, arrayToList, changeStatus } from "./controllers/task.controller.js";
 import textResources from "./database/chat.database.js";
 import { userTask } from "./models/task.model.js";
 
@@ -27,15 +27,16 @@ async function main(){
     await userInput
     
     let userCommand = userInputText.split(" ");
-    let Task = userCommand.slice(1).join(" ");
+    let task = userCommand.slice(1).join(" ");
 
     switch (userCommand[0].toLowerCase()) {
         case 'add':
-            await addTask(Task);
+            await addTask(task);
             arrayToList(userTask.activeTask);
             break;
 
         case 'change':
+            await changeStatus(task);
             break;
         
         case 'delete':

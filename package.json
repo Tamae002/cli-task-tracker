@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "task-cli": "node app"
+  },
   "type": "module",
   "dependencies": {
     "chalk": "^5.4.1",
